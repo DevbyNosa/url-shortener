@@ -2,7 +2,7 @@ import express, { type Request, type Response, type NextFunction } from "express
 import "dotenv/config";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { pool } from "./db.js";
+import { pool } from "./db.ts";
 //import apiRoutes from "./routes.js";
 
 const app = express();
@@ -34,8 +34,13 @@ app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.get("/health", (_req: Request, res: Response) => {
-  res.status(200).json({ status: "ok" });
+app.get("/health", async (_req: Request, res: Response) => {
+  try {
+    await pool.query("SELECT 1");
+    res.json({ status: "ok", db: "connected" });
+  } catch {
+    res.status(500).json({ status: "error", db: "disconnected" });
+  }
 });
 
 
