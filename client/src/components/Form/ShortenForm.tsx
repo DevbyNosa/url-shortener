@@ -29,11 +29,12 @@ export default function ShortenForm() {
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
           </svg>
 
-          <input
-            type="url"
-            placeholder="Paste your long URL here"
-            className="h-[52px] flex-1 bg-transparent font-mono text-[13px] text-[#6b7a6e] outline-none placeholder:text-[#3a4340] rounded-md"
+          <input 
+            type="url" 
+            placeholder="Paste your long URL here" 
+            className="h-[52px] flex-1 bg-transparent font-mono text-[13px] text-[#6b7a6e] outline-none placeholder:text-[#3a4340] rounded-none" 
           />
+
         </div>
 
         {/* Button */}

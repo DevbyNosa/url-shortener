@@ -3,6 +3,8 @@ import "dotenv/config";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { pool } from "./db.ts";
+import apiRoutes from '../routes/apiRoutes.ts';
+
 //import apiRoutes from "./routes.js";
 
 const app = express();
@@ -34,12 +36,42 @@ app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.use("/api", apiRoutes);
+
 app.get("/health", async (_req: Request, res: Response) => {
   try {
     await pool.query("SELECT 1");
     res.json({ status: "ok", db: "connected" });
   } catch {
     res.status(500).json({ status: "error", db: "disconnected" });
+  }
+});
+
+
+app.get("/:code", async (req: Request, res: Response) => {
+  try {
+    const { code } = req.params;
+
+   
+    if (code === "favicon.ico" || code === "robots.txt") {
+      return res.status(404).end();
+    }
+
+    const { rows } = await pool.query<{ url: string }>(
+      `SELECT url FROM links WHERE code = $1`,
+      [code]
+    );
+
+    const link = rows[0];
+    if (!link) {
+      return res.status(404).send("Short link not found");
+    }
+
+   
+    res.redirect(301, link.url);
+  } catch (err) {
+    console.error("[redirect] failed:", err);
+    res.status(500).send("Internal server error");
   }
 });
 
