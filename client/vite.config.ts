@@ -8,6 +8,10 @@ export default defineConfig({
     proxy: {
       "/api": "http://localhost:3000",
       "/health": "http://localhost:3000",
+      "/:code": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
     },
   },
 });

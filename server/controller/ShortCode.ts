@@ -40,7 +40,7 @@ export default async function shortenUrl(req: Request, res: Response) {
     }
 
    
-    const baseUrl = process.env.PUBLIC_BASE_URL || "http://localhost:5173";
+    const baseUrl = process.env.PUBLIC_URL || "http://localhost:3000";
     const shortUrl = `${baseUrl}/${link.code}`;
 
     
