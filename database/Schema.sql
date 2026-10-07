@@ -3,6 +3,7 @@ CREATE TABLE links (
   id         BIGSERIAL PRIMARY KEY,
   code       TEXT UNIQUE NOT NULL,
   url        TEXT NOT NULL,
+  session_id TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 

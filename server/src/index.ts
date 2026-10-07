@@ -3,7 +3,8 @@ import "dotenv/config";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { pool } from "./db.ts";
-import apiRoutes from '../routes/apiRoutes.ts';
+import apiRoutes from './routes/apiRoutes.ts';
+import { sessionMiddleware } from "./middleware/session.ts";
 
 //import apiRoutes from "./routes.js";
 
@@ -35,6 +36,7 @@ app.use(
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(sessionMiddleware);
 
 app.use("/api", apiRoutes);
 
