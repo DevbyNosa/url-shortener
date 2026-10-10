@@ -7,8 +7,8 @@ interface RecentlyShortenedProps {
 export default function RecentlyShortened({ links }: RecentlyShortenedProps) {
   if (links.length === 0) {
     return (
-      <section className="mx-auto w-[90%] max-w-6xl py-20">
-        <div className="border border-[#1f2921] bg-[#111613] p-12 text-center">
+      <section className="mx-auto w-[90%] max-w-6xl py-12 sm:py-20">
+        <div className="border border-[#1f2921] bg-[#111613] px-5 py-10 text-center sm:p-12">
           <p className="mt-4 font-display text-[18px] font-medium text-[#6b7a6e]">
             No links yet
           </p>
@@ -21,18 +21,18 @@ export default function RecentlyShortened({ links }: RecentlyShortenedProps) {
   }
 
   return (
-    <section className="mx-auto w-[90%] max-w-6xl py-20">
-      <div className="mb-8 flex items-end justify-between border-b border-[#1f2921] pb-6">
+    <section className="mx-auto w-[90%] max-w-6xl py-12 sm:py-20">
+      <div className="mb-8 flex items-end justify-between gap-4 border-b border-[#1f2921] pb-6">
         <div className="flex flex-col gap-2">
           <p className="font-mono text-[11px] uppercase tracking-[1.5px] text-[#6b7a6e]">
             Activity
           </p>
-          <h2 className="font-display text-[28px] font-semibold tracking-[-1px] text-[#ecf0ec]">
+          <h2 className="font-display text-[clamp(1.25rem,5vw,1.75rem)] font-semibold tracking-[-1px] text-[#ecf0ec]">
             Recently shortened
           </h2>
         </div>
 
-        <p className="font-mono text-[11px] uppercase tracking-[1.2px] text-[#3a4340]">
+        <p className="shrink-0 font-mono text-[10px] uppercase tracking-[1px] text-[#3a4340] sm:text-[11px] sm:tracking-[1.2px]">
           {String(links.length).padStart(2, "0")} total
         </p>
       </div>
@@ -41,9 +41,9 @@ export default function RecentlyShortened({ links }: RecentlyShortenedProps) {
         {links.map((link, index) => (
           <div
             key={link.code}
-            className="group grid grid-cols-[40px_1fr_auto] items-center gap-6 border border-[#1f2921] bg-[#111613] px-6 py-5 transition-colors hover:border-[#22c55e]/35 hover:bg-[#141a17] md:grid-cols-[40px_1fr_1fr_auto]"
+            className="group grid grid-cols-[24px_minmax(0,1fr)_36px] items-center gap-3 border border-[#1f2921] bg-[#111613] px-3 py-4 transition-colors hover:border-[#22c55e]/35 hover:bg-[#141a17] sm:grid-cols-[40px_minmax(0,1fr)_1fr_auto] sm:gap-4 sm:px-5 sm:py-5 lg:gap-6 lg:px-6"
           >
-            <span className="font-mono text-[12px] text-[#3a4340]">
+            <span className="font-mono text-[11px] text-[#3a4340] sm:text-[12px]">
               {String(index + 1).padStart(2, "0")}
             </span>
 
@@ -51,12 +51,12 @@ export default function RecentlyShortened({ links }: RecentlyShortenedProps) {
               href={link.shortUrl}
               target="_blank"
               rel="noreferrer"
-              className="truncate font-mono text-[14px] font-medium text-[#22c55e] hover:underline"
+              className="truncate font-mono text-[12px] font-medium text-[#22c55e] hover:underline sm:text-[14px]"
             >
               /{link.code}
             </a>
 
-            <span className="hidden truncate text-[13px] text-[#6b7a6e] md:block">
+            <span className="hidden min-w-0 truncate text-[12px] text-[#6b7a6e] sm:block">
               {link.url}
             </span>
 
