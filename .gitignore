@@ -1,2 +1,4 @@
 node_modules
 index.html
+client/dist/
+server/dist/
