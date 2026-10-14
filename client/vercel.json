@@ -1,7 +1,13 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://your-api.onrender.com/api/:path*" },
-    { "source": "/:code", "destination": "https://your-api.onrender.com/:code" },
+    {
+      "source": "/api/:path*",
+      "destination": "https://url-shortener-api.onrender.com/api/:path*"
+    },
+    {
+      "source": "/:code([A-Za-z0-9]{7})",
+      "destination": "https://url-shortener-api.onrender.com/:code"
+    },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

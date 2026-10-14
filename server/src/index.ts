@@ -2,9 +2,9 @@ import express, { type Request, type Response, type NextFunction } from "express
 import "dotenv/config";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { pool } from "./db.ts";
-import apiRoutes from './routes/apiRoutes.ts';
-import { sessionMiddleware } from "./middleware/session.ts";
+import { pool } from "./db.js";
+import apiRoutes from './routes/apiRoutes.js';
+import { sessionMiddleware } from "./middleware/session.js";
 
 //import apiRoutes from "./routes.js";
 

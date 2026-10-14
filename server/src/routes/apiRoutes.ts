@@ -1,5 +1,5 @@
 import express from 'express';
-import {shortenUrl, listLinks} from '../controller/ShortCode.ts';
+import {shortenUrl, listLinks} from '../controller/ShortCode.js';
 
 const router = express.Router();
 

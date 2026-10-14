@@ -1,7 +1,6 @@
 import type { Request, Response } from "express";
-import { pool } from "../db.ts";
-import { generateShortCode } from "../utils/shortcode.ts";
-import {sessionMiddleware} from "../middleware/session.ts";
+import { pool } from "../db.js";
+import { generateShortCode } from "../utils/shortcode.js";
 
 interface LinkRow {
   id: number;
@@ -47,7 +46,7 @@ export async function shortenUrl(
     }
 
     const baseUrl =
-      process.env.PUBLIC_BASE_URL || "http://localhost:3000";
+      process.env.PUBLIC_BASE_URL || process.env.RENDER_EXTERNAL_URL || "http://localhost:3000";
 
     return res.status(201).json({
       code: link.code,
@@ -79,7 +78,7 @@ export async function listLinks(req: Request, res: Response) {
     );
 
     const baseUrl =
-      process.env.PUBLIC_BASE_URL || "http://localhost:3000";
+      process.env.PUBLIC_BASE_URL || process.env.RENDER_EXTERNAL_URL || "http://localhost:3000";
 
     return res.json({
       links: rows.map((row) => ({
