@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://url-shortener-api.onrender.com/api/:path*"
+      "destination": " https://urlshortener-rrm2.onrender.com/api/:path*"
     },
     {
       "source": "/:code([A-Za-z0-9]{7})",
-      "destination": "https://url-shortener-api.onrender.com/:code"
+      "destination": "https://urlshortener-rrm2.onrender.com/:code"
     },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
