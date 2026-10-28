@@ -13,13 +13,12 @@ export function sessionMiddleware(
 
     res.cookie("sid", sid, {
       httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
+      sameSite: "none", 
+      secure: true,   
       maxAge: 30 * 24 * 60 * 60 * 1000, 
     }); 
   }
 
-  
   (req as any).sid = sid;
   next();
 }
